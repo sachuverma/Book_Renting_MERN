@@ -1,0 +1,42 @@
+import React, { useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+
+import "./App.css";
+
+import { useAuthContext } from "./context/authContext";
+
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+import Error from "./pages/ErrorPage";
+import Home from "./pages/HomePage";
+import Search from "./pages/SearchPage";
+
+const App = () => {
+  const { loadUser } = useAuthContext();
+
+  useEffect(() => {
+    loadUser();
+  }, []);
+
+  return (
+    <>
+      <Navbar />
+      <Switch>
+        <Route path="/search" exact>
+          <Search />
+        </Route>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+
+        <Route path="*">
+          <Error />
+        </Route>
+      </Switch>
+      {/* <Footer /> */}
+    </>
+  );
+};
+
+export default App;
