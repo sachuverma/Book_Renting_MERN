@@ -45,6 +45,11 @@ function NavBar() {
                 <Link className="nav-links" to="/search">
                   Search
                 </Link>
+                {isAuthenticated && (
+                  <Link className="nav-links" to="/buysell">
+                    Old Books
+                  </Link>
+                )}
               </Nav>
               <Nav>
                 {isAuthenticated ? (

@@ -31,6 +31,12 @@ const UserSchema = new Schema({
     type: Number,
     required: true,
   },
+  bought: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "book",
+    },
+  ],
   registered_on: {
     type: Date,
     default: Date.now,

@@ -7,10 +7,12 @@ import { useAuthContext } from "./context/authContext";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import PrivateRoute from "./components/PrivateRoute";
 
 import Error from "./pages/ErrorPage";
 import Home from "./pages/HomePage";
 import Search from "./pages/SearchPage";
+import BuySell from "./pages/BuySellPage";
 
 const App = () => {
   const { loadUser } = useAuthContext();
@@ -26,6 +28,9 @@ const App = () => {
         <Route path="/search" exact>
           <Search />
         </Route>
+        <PrivateRoute path="/buysell" exact>
+          <BuySell />
+        </PrivateRoute>
         <Route path="/" exact>
           <Home />
         </Route>
@@ -34,7 +39,7 @@ const App = () => {
           <Error />
         </Route>
       </Switch>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 };

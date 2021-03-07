@@ -2,6 +2,7 @@ const express = require("express"),
   router = express.Router();
 
 const Book = require("../../models/Book"),
+  User = require("../../models/User"),
   auth = require("../../middleware/auth");
 
 router.get("/", (req, res) => {
@@ -10,15 +11,32 @@ router.get("/", (req, res) => {
     .then((books) => res.json(books));
 });
 
-router.post("/", auth, (req, res) => {
+router.get("/:id", async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    if (!book) throw Error("Book does not exist");
+    res.json(book);
+  } catch (e) {
+    res.status(400).json(e.message);
+  }
+});
+
+router.post("/", auth, async (req, res) => {
   const newBook = new Book({
+    added_by: {
+      id: req.user.id,
+      name: req.user.name,
+    },
     book_name: req.body.book_name,
     book_author: req.body.book_author,
     for_branch: req.body.for_branch,
     for_semester: req.body.for_semester,
     sold: req.body.sold,
   });
-  newBook.save().then((book) => res.json(book));
+
+  newBook.save().then((book) => {
+    res.json(book);
+  });
 });
 
 router.get("/search", (req, res) => {

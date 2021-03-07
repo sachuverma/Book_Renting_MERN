@@ -2,6 +2,13 @@ const mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
+  added_by: {
+    id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+    },
+    name: String,
+  },
   book_name: {
     type: String,
     required: true,

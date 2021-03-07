@@ -1,9 +1,11 @@
 const express = require("express"),
+  mongoose = require("mongoose"),
   bcrypt = require("bcryptjs"),
   jwt = require("jsonwebtoken");
 
 const auth = require("../../middleware/auth"),
   User = require("../../models/User");
+const Book = require("../../models/Book");
 
 const JWT_SECRET = "THIS IZ A SUPER SEKRAT BIRO, DO NOT LEAK ITTT ;p",
   router = express.Router();
@@ -84,9 +86,13 @@ router.post("/register", async (req, res) => {
     const savedUser = await newUser.save();
     if (!savedUser) throw Error("Something went wrong saving the user");
 
-    const token = jwt.sign({ id: savedUser._id }, JWT_SECRET, {
-      expiresIn: 36000,
-    });
+    const token = jwt.sign(
+      { id: savedUser._id, name: savedUser.name },
+      JWT_SECRET,
+      {
+        expiresIn: 36000,
+      }
+    );
 
     res.status(200).json({
       token,
@@ -106,6 +112,22 @@ router.get("/user", auth, async (req, res) => {
     const user = await User.findById(req.user.id).select("-password");
     if (!user) throw Error("User does not exist");
     res.json(user);
+  } catch (e) {
+    res.status(400).json(e.message);
+  }
+});
+
+router.get("/user/books", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    if (!user) throw Error("User does not exist");
+    const books = await Book.find({
+      added_by: {
+        id: mongoose.Types.ObjectId(req.user.id),
+        name: req.user.name,
+      },
+    });
+    res.json(books);
   } catch (e) {
     res.status(400).json(e.message);
   }
