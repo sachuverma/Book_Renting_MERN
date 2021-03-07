@@ -3,7 +3,7 @@ import React, { useState, useContext, useReducer, useEffect } from "react";
 import { LOADING, LOAD_ITEMS } from "../actions/types";
 import reducer from "../reducer/searchReducer";
 
-const url = "/api/books/search?";
+const url = "http://localhost:5000/api/books/search?";
 const SearchContext = React.createContext();
 
 const initialState = {
@@ -18,6 +18,12 @@ const SearchProvider = ({ children }) => {
     dispatch({ type: LOADING });
     const res = await fetch(url);
     const items = await res.json();
+
+    if (res.status == 400) {
+      console.log("error searching");
+      dispatch({ type: LOAD_ITEMS, payload: [] });
+      return;
+    }
     console.log(items);
     dispatch({ type: LOAD_ITEMS, payload: items });
   };

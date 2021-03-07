@@ -42,7 +42,7 @@ function NavBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
-                <Link className="nav-links" to="/search">
+                <Link className="nav-links" to="/books">
                   Search
                 </Link>
                 {isAuthenticated && (

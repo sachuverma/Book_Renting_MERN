@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Card, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { useSearchContext } from "../context/searchContext";
@@ -32,7 +33,9 @@ function SearchResults() {
                 <Col xs={12} sm={6} md={4} lg={3} key={book._id}>
                   <Card className="zoom">
                     <Card.Body>
-                      <Card.Title>{book.book_name}</Card.Title>
+                      <Card.Title>
+                        <Link to={`/books/${book._id}`}>{book.book_name}</Link>
+                      </Card.Title>
                       <Card.Text>
                         <span>
                           <strong>Author: </strong>

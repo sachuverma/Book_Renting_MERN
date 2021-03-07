@@ -8,6 +8,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { SearchProvider } from "./context/searchContext";
+import { BookDetailsProvider } from "./context/bookDetailsContext";
 import { AuthProvider } from "./context/authContext";
 
 ReactDOM.render(
@@ -15,7 +16,9 @@ ReactDOM.render(
     <AuthProvider>
       <Router>
         <SearchProvider>
-          <App />
+          <BookDetailsProvider>
+            <App />
+          </BookDetailsProvider>
         </SearchProvider>
       </Router>
     </AuthProvider>

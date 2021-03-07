@@ -13,6 +13,7 @@ import Error from "./pages/ErrorPage";
 import Home from "./pages/HomePage";
 import Search from "./pages/SearchPage";
 import BuySell from "./pages/BuySellPage";
+import Book from "./pages/BookPage";
 
 const App = () => {
   const { loadUser } = useAuthContext();
@@ -25,8 +26,11 @@ const App = () => {
     <>
       <Navbar />
       <Switch>
-        <Route path="/search" exact>
+        <Route path="/books" exact>
           <Search />
+        </Route>
+        <Route path="/books/:id" exact>
+          <Book />
         </Route>
         <PrivateRoute path="/buysell" exact>
           <BuySell />

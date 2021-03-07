@@ -8,8 +8,8 @@ app.use(express.json());
 
 mongoose
   .connect(
-    // "mongodb://localhost:27017/book_rent_mern",
-    "mongodb+srv://sachu:sachu123@cluster0.grhcu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "mongodb://localhost:27017/book_rent_mern",
+    // "mongodb+srv://sachu:sachu123@cluster0.grhcu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,

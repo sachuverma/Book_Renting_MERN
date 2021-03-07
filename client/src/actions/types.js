@@ -11,3 +11,7 @@ export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const LOADING = "LOADING";
 export const LOAD_ITEMS = "LOAD_ITEMS";
+
+export const BOOK_LOADING = "BOOK_LOADING";
+export const BOOK_LOADED = "BOOK_LOADED";
+export const BOOK_ERROR = "BOOK_ERROR";

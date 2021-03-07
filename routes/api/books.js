@@ -11,7 +11,7 @@ router.get("/", (req, res) => {
     .then((books) => res.json(books));
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/book/:id", async (req, res) => {
   try {
     const book = await Book.findById(req.params.id);
     if (!book) throw Error("Book does not exist");
@@ -39,28 +39,58 @@ router.post("/", auth, async (req, res) => {
   });
 });
 
-router.get("/search", (req, res) => {
+router.get("/search", async (req, res) => {
   const { book_title, book_author, for_branch, for_semester } = req.query;
 
   if (book_author) {
-    let re = new RegExp(book_author);
-    Book.find({ book_author: { $regex: re, $options: "i" }, sold: false })
-      .sort({ added_on: -1 })
-      .then((books) => res.json(books));
+    try {
+      let re = new RegExp(book_author);
+      const books = await Book.find({
+        book_author: { $regex: re, $options: "i" },
+        sold: false,
+      });
+      if (!books) throw Error(`Can't Find Book With Author ${book_author}`);
+      res.json(books);
+    } catch (e) {
+      res.status(400).json(e.message);
+    }
   } else if (for_branch) {
-    let re = new RegExp(for_branch);
-    Book.find({ for_branch: { $regex: re, $options: "i" }, sold: false })
-      .sort({ added_on: -1 })
-      .then((books) => res.json(books));
+    try {
+      let re = new RegExp(for_branch);
+      const books = await Book.find({
+        book_name: { $regex: re, $options: "i" },
+        sold: false,
+      });
+      if (!books) throw Error(`Can't Find Book For Branch ${for_branch}`);
+      res.json(books);
+    } catch (e) {
+      res.status(400).json(e.message);
+    }
   } else if (for_semester) {
-    Book.find({ for_semester: Number(for_semester), sold: false })
-      .sort({ added_on: -1 })
-      .then((books) => res.json(books));
+    try {
+      const books = await Book.find({
+        for_semester: Number(for_semester),
+        sold: false,
+      });
+      if (!books) throw Error(`Can't Find Book For Semester ${for_semester}`);
+      res.json(books);
+    } catch (e) {
+      res.status(400).json(e.message);
+    }
+  } else if (book_title) {
+    try {
+      let re = new RegExp(book_title);
+      const books = await Book.find({
+        book_name: { $regex: re, $options: "i" },
+        sold: false,
+      });
+      if (!books) throw Error(`Can't Find Book With Title ${book_title}`);
+      res.json(books);
+    } catch (e) {
+      res.status(400).json(e.message);
+    }
   } else {
-    let re = new RegExp(book_title);
-    Book.find({ book_name: { $regex: re, $options: "i" }, sold: false })
-      .sort({ added_on: -1 })
-      .then((books) => res.json(books));
+    res.status(400).json(`Can't Find Book Specified Book`);
   }
 });
 
