@@ -15,3 +15,9 @@ export const LOAD_ITEMS = "LOAD_ITEMS";
 export const BOOK_LOADING = "BOOK_LOADING";
 export const BOOK_LOADED = "BOOK_LOADED";
 export const BOOK_ERROR = "BOOK_ERROR";
+
+export const LOAD_ADD_ITEMS = "LOAD_ADD_ITEMS";
+
+export const SEND_LOADING = "SEND_LOADING";
+export const SENT_DETAILS = "SENT_DETAILS";
+export const ERROR_SENDING_DETAILS = "ERROR_SENDING_DETAILS";

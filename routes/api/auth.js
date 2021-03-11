@@ -123,8 +123,8 @@ router.get("/user/books", auth, async (req, res) => {
     if (!user) throw Error("User does not exist");
     const books = await Book.find({
       added_by: {
-        id: mongoose.Types.ObjectId(req.user.id),
-        name: req.user.name,
+        id: mongoose.Types.ObjectId(user.id),
+        name: user.name,
       },
     });
     res.json(books);

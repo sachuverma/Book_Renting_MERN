@@ -47,7 +47,7 @@ function NavBar() {
                 </Link>
                 {isAuthenticated && (
                   <Link className="nav-links" to="/buysell">
-                    Old Books
+                    Sell Books
                   </Link>
                 )}
               </Nav>

@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
+
+import { useAuthContext } from "../context/authContext";
 
 import NotificationModal from "./NotificationModal";
 
 function BookDetails({ book }) {
+  const { isAuthenticated, user } = useAuthContext();
+
   const { book_author, for_branch, for_semester, added_by } = book;
   const [show, setShow] = useState(false);
   const toggleModal = () => {
@@ -32,7 +36,11 @@ function BookDetails({ book }) {
       <Button variant="success" onClick={toggleModal}>
         Request for this book
       </Button>
-      <NotificationModal show={show} toggle={toggleModal} />
+      <NotificationModal
+        show={show}
+        toggle={toggleModal}
+        text="Your request has been sent to the owner"
+      />
     </Wrapper>
   );
 }

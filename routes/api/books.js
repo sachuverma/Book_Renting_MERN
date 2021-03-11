@@ -22,6 +22,7 @@ router.get("/book/:id", async (req, res) => {
 });
 
 router.post("/", auth, async (req, res) => {
+  console.log(req.user);
   const newBook = new Book({
     added_by: {
       id: req.user.id,
@@ -33,7 +34,7 @@ router.post("/", auth, async (req, res) => {
     for_semester: req.body.for_semester,
     sold: req.body.sold,
   });
-
+  console.log(newBook);
   newBook.save().then((book) => {
     res.json(book);
   });
