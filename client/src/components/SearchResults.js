@@ -4,14 +4,18 @@ import styled from "styled-components";
 
 import { useSearchContext } from "../context/searchContext";
 import BookLists from "./BookLists";
+import Loading from "./Loading";
 
 function SearchResults() {
   const [searchedBooks, setMyBooks] = React.useState([]);
-  const { books } = useSearchContext();
+  const { loading, books } = useSearchContext();
 
   React.useEffect(() => {
     setMyBooks(books);
+    window.scrollBy(0, window.innerHeight);
   }, [books]);
+
+  if (loading) return <Loading />;
 
   return (
     <Wrapper>

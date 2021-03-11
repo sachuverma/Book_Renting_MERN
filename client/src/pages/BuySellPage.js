@@ -6,6 +6,7 @@ import styled from "styled-components";
 import book2 from "../assets/images/books2.jpg";
 
 import { useSearchContext } from "../context/searchContext";
+import Loading from "../components/Loading";
 import Banner from "../components/Banner";
 import BookLists from "../components/BookLists";
 import NotificationModal from "../components/NotificationModal";
@@ -172,7 +173,7 @@ function BuySellPage() {
   );
 
   if (added_loading) {
-    return <h1>Loading.....</h1>;
+    return <Loading />;
   }
 
   return (

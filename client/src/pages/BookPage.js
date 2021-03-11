@@ -9,6 +9,7 @@ import book2 from "../assets/images/books2.jpg";
 
 import Banner from "../components/Banner";
 import BookDetails from "../components/BookDetails";
+import Loading from "../components/Loading";
 
 function BookPage() {
   const { id } = useParams();
@@ -23,8 +24,15 @@ function BookPage() {
     searchBookDetails(id);
   }, [id]);
 
-  if (book_error) return <h1>Error</h1>;
-  if (loading_book) return <h1>Loading Book....</h1>;
+  if (book_error)
+    return (
+      <div style={{ paddingTop: "150px", textAligh: "center" }}>
+        <h1>Error</h1>
+        <h2>Can't Fetch Book Details</h2>
+        <h3>Go Back</h3>
+      </div>
+    );
+  if (loading_book) return <Loading />;
 
   const Content = (
     <Row>

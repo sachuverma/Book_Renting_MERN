@@ -74,7 +74,18 @@ const SearchProvider = ({ children }) => {
       dispatch({ type: LOAD_ADD_ITEMS, payload: [] });
       return;
     }
-    // console.log(items);
+
+    for (let i = 0; i < items.length; ++i) {
+      let image_url = "https://via.placeholder.com/500";
+      try {
+        const res = await axios.get(`/api/books/book/image/${items[i]._id}`);
+        image_url = res.config.url;
+      } catch (e) {
+        console.log("img err", e);
+      }
+      items[i]["image_url"] = image_url;
+      console.log(i, items[i]);
+    }
     dispatch({ type: LOAD_ADD_ITEMS, payload: items });
   };
 

@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import styled from "styled-components";
 
 function BookLists({ books }) {
