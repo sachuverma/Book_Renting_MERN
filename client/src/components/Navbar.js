@@ -7,12 +7,19 @@ import { useAuthContext } from "../context/authContext";
 
 import RegisterModal from "./RegisterModal";
 import LoginModal from "./LoginModal";
+import NotificationModal from "./NotificationModal";
 
 function NavBar() {
   const { isAuthenticated, clearErrors, user, logout } = useAuthContext();
 
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+
+  const [showNotification, setShowNotification] = useState(false);
+
+  const toggleNotification = () => {
+    setShowNotification(!showNotification);
+  };
 
   const toggleRegister = () => {
     clearErrors();
@@ -22,6 +29,15 @@ function NavBar() {
   const toggleLogin = () => {
     clearErrors();
     setShowLogin(() => !showLogin);
+  };
+
+  const logoutHandler = () => {
+    <NotificationModal
+      show={showNotification}
+      toggle={toggleNotification}
+      text="You Have Been Logged Out!"
+    />;
+    logout();
   };
 
   return (
@@ -58,7 +74,7 @@ function NavBar() {
                       <span className="">Welcome, </span>
                       {user.name}
                     </Link>
-                    <Link className="nav-links" to="#" onClick={logout}>
+                    <Link className="nav-links" to="#" onClick={logoutHandler}>
                       Logout
                     </Link>
                   </>

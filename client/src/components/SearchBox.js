@@ -23,7 +23,7 @@ function SearchBox() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    window.scrollBy(0, window.innerHeight);
+    window.scrollBy(0, 2 * window.innerHeight);
     if (!search || !field) return;
     console.log("handle submit");
     handleSearch(field, search);
