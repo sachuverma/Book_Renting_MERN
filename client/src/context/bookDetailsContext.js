@@ -1,4 +1,5 @@
 import React, { useState, useContext, useReducer, useEffect } from "react";
+import axios from "axios";
 
 import { BOOK_LOADING, BOOK_ERROR, BOOK_LOADED } from "../actions/types";
 import reducer from "../reducer/bookDetailsReducer";
@@ -25,6 +26,17 @@ const BookDetailsProvider = ({ children }) => {
       dispatch({ type: BOOK_ERROR, payload: res.statusText });
       return;
     }
+
+    let image_url = "https://via.placeholder.com/500";
+    try {
+      const res = await axios.get(`/api/books/book/image/${details._id}`);
+      image_url = res.config.url;
+    } catch (e) {
+      console.log("img err", e);
+    }
+    details["image_url"] = image_url;
+    console.log(details);
+
     dispatch({ type: BOOK_LOADED, payload: details });
   };
 

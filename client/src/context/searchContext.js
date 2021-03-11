@@ -26,14 +26,27 @@ const SearchProvider = ({ children }) => {
 
   const fetchData = async (url) => {
     dispatch({ type: LOADING });
-    const res = await fetch(url);
-    const items = await res.json();
+    const res = await axios.get(url);
+    const items = await res.data;
 
-    if (res.status == 400) {
+    if (res.status === 400) {
       console.log("error searching");
       dispatch({ type: LOAD_ITEMS, payload: [] });
       return;
     }
+
+    for (let i = 0; i < items.length; ++i) {
+      let image_url = "https://via.placeholder.com/500";
+      try {
+        const res = await axios.get(`/api/books/book/image/${items[i]._id}`);
+        image_url = res.config.url;
+      } catch (e) {
+        console.log("img err", e);
+      }
+      items[i]["image_url"] = image_url;
+      console.log(i, items[i]);
+    }
+
     // console.log(items);
     dispatch({ type: LOAD_ITEMS, payload: items });
   };

@@ -2,6 +2,9 @@ const mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 
 const BookSchema = new Schema({
+  book_image: {
+    type: Buffer,
+  },
   added_by: {
     id: {
       type: mongoose.Schema.Types.ObjectId,

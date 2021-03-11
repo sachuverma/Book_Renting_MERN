@@ -29,7 +29,11 @@ function BookPage() {
   const Content = (
     <Row>
       <Col className="image" md={6}>
-        Book Image Placeholder
+        <img
+          src={book_details.image_url}
+          alt="Book Images Not Available"
+          width="100%"
+        />
       </Col>
       <Col md={6}>
         <BookDetails book={book_details} />

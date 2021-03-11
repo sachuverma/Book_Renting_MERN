@@ -1,4 +1,16 @@
 const express = require("express"),
+  multer = require("multer"),
+  image = multer({
+    limits: {
+      fileSize: 1000000,
+    },
+    storage: multer.memoryStorage(),
+    fileFilter(req, file, cb) {
+      if (!file.originalname.match(/\.(jpg|png|JPG|PNG|JPEG|jpeg)$/))
+        return cb(new Error("Not a valid file format!"));
+      cb(undefined, true);
+    },
+  }),
   router = express.Router();
 
 const Book = require("../../models/Book"),
@@ -21,24 +33,46 @@ router.get("/book/:id", async (req, res) => {
   }
 });
 
-router.post("/", auth, async (req, res) => {
-  console.log(req.user);
-  const newBook = new Book({
-    added_by: {
-      id: req.user.id,
-      name: req.user.name,
-    },
-    book_name: req.body.book_name,
-    book_author: req.body.book_author,
-    for_branch: req.body.for_branch,
-    for_semester: req.body.for_semester,
-    sold: req.body.sold,
-  });
-  console.log(newBook);
-  newBook.save().then((book) => {
-    res.json(book);
-  });
+router.get("/book/image/:id", async (req, res) => {
+  try {
+    const book = await Book.findById(req.params.id);
+    if (!book) throw Error("Book does not exist");
+    res.set("Content-Type", "image/jpg");
+    res.send(book.book_image);
+  } catch (e) {
+    res.status(400).json(e.message);
+  }
 });
+
+router.post(
+  "/",
+  auth,
+  image.single("book_image"),
+  async (req, res) => {
+    console.log(req.user);
+    console.log(req.body);
+    console.log(req.file);
+
+    const newBook = new Book({
+      book_image: req.file.buffer,
+      added_by: {
+        id: req.user.id,
+        name: req.user.name,
+      },
+      book_name: req.body.book_name,
+      book_author: req.body.book_author,
+      for_branch: req.body.for_branch,
+      for_semester: req.body.for_semester,
+      sold: req.body.sold,
+    });
+    newBook.save().then((book) => {
+      res.json(book);
+    });
+  },
+  (err, req, res, next) => {
+    res.status(400).json(err.message);
+  }
+);
 
 router.get("/search", async (req, res) => {
   const { book_title, book_author, for_branch, for_semester } = req.query;
