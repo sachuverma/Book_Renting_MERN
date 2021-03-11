@@ -4,7 +4,7 @@ const express = require("express"),
     limits: {
       fileSize: 1000000,
     },
-    storage: multer.memoryStorage(),
+    // storage: multer.memoryStorage(),
     fileFilter(req, file, cb) {
       if (!file.originalname.match(/\.(jpg|png|JPG|PNG|JPEG|jpeg)$/))
         return cb(new Error("Not a valid file format!"));
@@ -49,10 +49,6 @@ router.post(
   auth,
   image.single("book_image"),
   async (req, res) => {
-    console.log(req.user);
-    console.log(req.body);
-    console.log(req.file);
-
     const newBook = new Book({
       book_image: req.file.buffer,
       added_by: {
@@ -70,6 +66,7 @@ router.post(
     });
   },
   (err, req, res, next) => {
+    console.log(err.message);
     res.status(400).json(err.message);
   }
 );

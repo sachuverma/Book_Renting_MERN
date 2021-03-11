@@ -79,25 +79,31 @@ const SearchProvider = ({ children }) => {
   };
 
   const addBook = async (data, file) => {
-    // dispatch({ type: SEND_LOADING });
-    console.log("file from form", file);
-    // const body = JSON.stringify(data);
+    dispatch({ type: SEND_LOADING });
 
-    // const res = await axios.post(
-    //   "http://localhost:5000/api/books",
-    //   data,
-    //   tokenConfig()
-    // );
-    // const item = await res.data;
+    let formData = new FormData();
+    formData.append("book_name", data.book_name);
+    formData.append("book_author", data.book_author);
+    formData.append("for_semester", data.for_semester);
+    formData.append("for_branch", data.for_branch);
+    formData.append("book_image", file);
 
-    // if (res.status !== 200) {
-    //   console.log("error geting sell books");
-    //   dispatch({ type: SENT_DETAILS, payload: null });
-    //   return;
-    // }
+    console.log("data from form", formData);
+    const res = await axios.post(
+      "http://localhost:5000/api/books",
+      formData,
+      imageHeaderConfig()
+    );
+    const item = await res.data;
 
-    // console.log(item);
-    // dispatch({ type: SENT_DETAILS, payload: item });
+    if (res.status !== 200) {
+      console.log("error geting sell books");
+      dispatch({ type: SENT_DETAILS, payload: null });
+      return;
+    }
+
+    console.log(item);
+    dispatch({ type: SENT_DETAILS, payload: item });
   };
 
   const tokenConfig = () => {
@@ -105,6 +111,19 @@ const SearchProvider = ({ children }) => {
     const config = {
       headers: {
         "Content-type": "application/json",
+      },
+    };
+
+    if (token) config.headers["x-auth-token"] = token;
+    console.log(config);
+    return config;
+  };
+
+  const imageHeaderConfig = () => {
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
       },
     };
 

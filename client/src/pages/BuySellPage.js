@@ -50,7 +50,10 @@ function BuySellPage() {
     setAddError("");
 
     if (!file) {
-      setAddError("Add Images");
+      setAddError("Add Book Image");
+      return;
+    } else if (file.size > 1000000) {
+      setAddError("Use Images less than 1MB");
       return;
     } else if (
       !data.book_name ||
@@ -75,16 +78,21 @@ function BuySellPage() {
 
   const onFileChange = (e) => {
     setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
   };
 
   const Content = (
     <Row className="pt-5">
-      <Form onSubmit={handleSubmit} className="form">
+      <Form
+        onSubmit={handleSubmit}
+        className="form"
+        encType="multipart/form-data"
+      >
         <Col className="image">
           <Form.Group>
             <Form.File
               id="exampleFormControlFile1"
-              label="Upload Book Images"
+              label="Upload Book Image"
               onChange={onFileChange}
               style={{ margin: "auto" }}
             />
