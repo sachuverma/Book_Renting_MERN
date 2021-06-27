@@ -12,7 +12,7 @@ function SearchResults() {
 
   React.useEffect(() => {
     setMyBooks(books);
-    // window.scrollBy(0, window.innerHeight);
+    // window.scrollBy(0, 0);
   }, [books]);
 
   if (loading) return <Loading />;

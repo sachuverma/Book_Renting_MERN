@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
-import { FaInfoCircle } from "react-icons/fa";
+import { FaInfoCircle, FaCalendarPlus } from "react-icons/fa";
 import styled from "styled-components";
 
 import book2 from "../assets/images/books2.jpg";
@@ -165,7 +165,7 @@ function BuySellPage() {
             </Form.Control>
           </Form.Group>
           <Button variant="success" type="submit">
-            Add Book
+            Add Book <FaCalendarPlus />
           </Button>
         </Col>
       </Form>
