@@ -40,6 +40,16 @@ const BannerContent = (
       laboriosam dignissimos corporis autem distinctio harum aliquam, quo
       debitis!
     </p>
+    <p>
+      deleniti sit repellendus eveniet possimus, doloribus odio ipsum, quam
+      voluptatem. Adipisci, maiores error. Officiis fugiat repellendus,
+      voluptates illum maiores aspernatur.
+    </p>
+    <p>
+      Quo ducimus eum facilis atque possimus aperiam, provident reprehenderit
+      perferendis autem non eius incidunt impedit, ex aut eveniet quibusdam
+      quaerat excepturi harum sequi sint molestiae asperiores?
+    </p>
     <a href="#guide">
       <Button>
         Guide To Reading <FaSortAmountDownAlt />

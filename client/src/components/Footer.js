@@ -4,11 +4,10 @@ import { Card, Button } from "react-bootstrap";
 function Footer() {
   return (
     <Card
-      bg="dark"
-      text="white"
+      bg="light"
+      text="dark"
       className="text-center mt-5 shadow-sm translucent"
     >
-      <Card.Header>Featured</Card.Header>
       <Card.Body>
         <Card.Title>Special title treatment</Card.Title>
         <Card.Text>
@@ -17,7 +16,7 @@ function Footer() {
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
       <Card.Footer className="text-muted">
-        ©2021 |BookHouse | All rights reserved
+        ©2021 | BookHouse | All rights reserved
       </Card.Footer>
     </Card>
   );

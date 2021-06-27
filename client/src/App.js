@@ -37,14 +37,13 @@ const App = () => {
         </PrivateRoute>
         <Route path="/" exact>
           <Home />
-          <Footer />
         </Route>
 
         <Route path="*">
           <Error />
-          <Footer />
         </Route>
       </Switch>
+      <Footer />
     </>
   );
 };

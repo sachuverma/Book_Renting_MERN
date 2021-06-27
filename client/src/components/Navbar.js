@@ -54,7 +54,7 @@ function NavBar() {
       <Wrapper>
         <Navbar
           expand="lg"
-          variant="dark"
+          variant="light"
           // fixed="top"
           className="shadow-sm translucent"
         >
@@ -113,16 +113,19 @@ const Wrapper = styled.div`
     cursor: text;
   }
   .translucent {
-    background-color: rgba(0, 0, 0, 0.8);
+    background: #f8f9fa;
   }
   .nav-links {
     margin: 0 4px;
   }
   a {
-    color: #f3f3f3;
+    color: #343a40;
   }
   a:hover {
-    opacity: 0.8;
+    // opacity: 0.8;
+    color: #7e201e;
+    transition: all 0.1s;
+    transition-duration: 0.1s !important;
   }
 `;
 
