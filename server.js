@@ -6,10 +6,12 @@ const express = require("express"),
 app.use(cors());
 app.use(express.json());
 
+const PORT = process.env.PORT || 5000;
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/book_rent_mern";
+
 mongoose
   .connect(
-    "mongodb://localhost:27017/book_rent_mern",
-    // "mongodb+srv://sachu:sachu123@cluster0.grhcu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    MONGO_URI,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -30,5 +32,5 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => console.log(`Backend running at port ${PORT}`));

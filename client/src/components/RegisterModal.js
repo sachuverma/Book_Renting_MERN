@@ -27,9 +27,100 @@ function RegisterModal({ show, toggle }) {
     });
   };
 
+  const validateEmail = (email) => {
+    if(email.length === 0 || email === " " || email === undefined || email === "") return false;
+    const re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  const validateAlpha = (text) => {
+    if(text.length === 0 || text === " " || text === undefined || text === "") return false;
+    const re = /^[a-zA-Z ]*$/;
+    return re.test(text);
+  }
+
+  const validateAlphaNum = (roll) => {
+    if(roll.length === 0 || roll === " " || roll === undefined || roll === "") return false;
+    const re = /^[a-zA-Z0-9]*$/;
+    return re.test(roll);
+  }
+
+  const validateYear = (year) => {
+    if(year.length === 0 || year === " " || year === undefined || year === "") return false;
+    const re = /^20\d{2}$/
+    if(!re.test(year)) return false;
+    return year >= 2018 && year <= 2021;
+  }
+
+  const validatePassword = (password) => {
+    const re = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    return re.test(password)
+  }
+
+  const validateFields = () => {
+    let valid = true;
+    
+    valid = validateAlpha(data.name);
+    console.log('validate name', valid);
+    if(!valid) {
+      setError('Name should be alphabets only')
+      return false;
+    }
+
+    valid = validateEmail(data.email);
+    console.log('validate email', valid);
+    if(!valid) {
+      setError('Email format should be, \'xxx@xxx.xxx\'')
+      return false;
+    }
+
+    valid = validatePassword(data.password);
+    console.log('validate password', valid);
+    if(!valid) {
+      setError('Use correct password format!')
+      return false;
+    }
+
+    valid = validateAlphaNum(data.roll_number);
+    console.log('validate roll number', valid);
+    if(!valid) {
+      setError('Roll No should be alpha num only')
+      return false;
+    }
+
+    valid = validateAlpha(data.branch);
+    console.log('validate branch', valid);
+    if(!valid) {
+      setError('Branch name should be alphabets only')
+      return false;
+    }
+
+    valid = validateAlpha(data.college);
+    console.log('validate college', valid);
+    if(!valid) {
+      setError('College name should be alphabets only')
+      return false;
+    }
+
+    valid = validateYear(data.year_of_admission);
+    console.log('validate year', valid);
+    if(!valid) {
+      setError('Year should be between 2018 - 2021')
+      return false;
+    }
+
+    return true;
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     console.log("form values", data);
+
+    if(!validateFields()){
+      console.log('form fields not valid!');
+      return;
+    }
 
     await register(data);
     console.log("end submit");
@@ -104,6 +195,9 @@ function RegisterModal({ show, toggle }) {
                 name="password"
                 placeholder="Password"
               />
+              <Form.Text className="text-muted">
+                Minimum 6-16 characters, atleast 1 special character and 1 number
+              </Form.Text>
             </Form.Group>
             <Form.Group controlId="formBasicRollNumber">
               {/* <Form.Label>Roll Number</Form.Label> */}
@@ -148,6 +242,9 @@ function RegisterModal({ show, toggle }) {
                 name="year_of_admission"
                 placeholder="Year of Admission"
               />
+              <Form.Text className="text-muted">
+                2018 - 2021
+              </Form.Text>
             </Form.Group>
             <Form.Group controlId="formBasicCheckbox">
               <Form.Check
