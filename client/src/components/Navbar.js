@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import {
+  FaUserAlt,
+  FaBook,
+  FaSearch,
+  FaUserPlus,
+  FaSignInAlt,
+  FaSignOutAlt,
+  FaSortAmountDownAlt,
+} from "react-icons/fa";
 
 import { useAuthContext } from "../context/authContext";
 
@@ -46,45 +55,45 @@ function NavBar() {
         <Navbar
           expand="lg"
           variant="dark"
-          fixed="top"
+          // fixed="top"
           className="shadow-sm translucent"
         >
           <Container>
             <Navbar.Brand>
               <Link className="nav-links" to="/">
-                BOOK RENT
+                BOOK HOUSE{" "}
               </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto">
                 <Link className="nav-links" to="/books">
-                  Search
+                  Search <FaSearch />
                 </Link>
                 {isAuthenticated && (
                   <Link className="nav-links" to="/buysell">
-                    Sell Books
+                    Sell Books <FaBook />
                   </Link>
                 )}
               </Nav>
               <Nav>
                 {isAuthenticated ? (
                   <>
-                    <Link className="nav-links welcome" to="#">
-                      <span className="">Welcome, </span>
-                      {user.name}
+                    <Link className="nav-links welcome mr-2" to="#">
+                      <span className="text-muted">Welcome, </span>
+                      <FaUserAlt /> {user.name}
                     </Link>
                     <Link className="nav-links" to="#" onClick={logoutHandler}>
-                      Logout
+                      Logout <FaSignOutAlt />
                     </Link>
                   </>
                 ) : (
                   <>
                     <Link className="nav-links" to="#" onClick={toggleLogin}>
-                      Login
+                      <FaSignInAlt /> Login
                     </Link>
                     <Link className="nav-links" to="#" onClick={toggleRegister}>
-                      Register
+                      Register <FaUserPlus />
                     </Link>
                   </>
                 )}
@@ -104,7 +113,7 @@ const Wrapper = styled.div`
     cursor: text;
   }
   .translucent {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
   }
   .nav-links {
     margin: 0 4px;
