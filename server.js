@@ -2,7 +2,9 @@ const express = require("express"),
   mongoose = require("mongoose"),
   morgan = require("morgan"),
   cors = require("cors"),
+  path = require("path"),
   bodyParser = require("body-parser");
+
 app = express();
 
 app.use(cors());
