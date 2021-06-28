@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
     const body = JSON.stringify(data);
 
     axios
-      .post("http://localhost:5000/api/register", body, config)
+      .post("/api/register", body, config)
       .then((res) => {
         console.log("register end");
         dispatch({ type: REGISTER_SUCCESS, payload: res.data });
@@ -102,7 +102,7 @@ const AuthProvider = ({ children }) => {
     const body = JSON.stringify(data);
 
     axios
-      .post("http://localhost:5000/api/login", body, config)
+      .post("/api/login", body, config)
       .then((res) => {
         console.log("login end");
         dispatch({ type: LOGIN_SUCCESS, payload: res.data });
