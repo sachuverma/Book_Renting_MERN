@@ -85,8 +85,7 @@ function SearchBox() {
 const Wrapper = styled.div`
   .select-drpdwn {
     max-width: 25%;
-    color: #fff !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
+
     border: none !important;
     option {
       color: #636363;
@@ -100,14 +99,12 @@ const Wrapper = styled.div`
   }
 
   .search-input {
-    color: #fff !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
     border: none !important;
   }
 
   input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #d3d3d3;
+
     opacity: 1; /* Firefox */
   }
 

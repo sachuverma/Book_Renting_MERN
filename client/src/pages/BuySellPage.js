@@ -244,7 +244,7 @@ const Wrapper = styled.div`
 
   input::placeholder {
     /* Chrome, Firefox, Opera, Safari 10.1+ */
-    color: #d3d3d3;
+
     opacity: 1; /* Firefox */
   }
 

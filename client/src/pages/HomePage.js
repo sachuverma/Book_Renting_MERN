@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
-import { Button, Row, Col, Container } from "react-bootstrap";
-import { FaSortAmountDownAlt } from "react-icons/fa";
-
 import styled from "styled-components";
+import { Button, Row, Col, Container } from "react-bootstrap";
+
+import { FaSortAmountDownAlt } from "react-icons/fa";
+import { GoBook, GoChecklist, GoProject, GoRepoPush } from "react-icons/go";
 
 import book1 from "../assets/images/books1.jpg";
 import WindowImg from "../assets/images/window.jpg";
 
 import girl1 from "../assets/images/girl1.svg";
-import girl2 from "../assets/images/girl2.svg";
 import girl3 from "../assets/images/girl3.svg";
 
 import logo1 from "../assets/images/logo1.svg";
@@ -53,7 +53,19 @@ const BannerContent = (
             style={{ width: "100%", height: "100%" }}
           />
         </Col>
-        <Col sm={2}></Col>
+        <Col sm={2}>
+          <Row style={{ marginTop: "20px" }}>
+            <Col xs={4} sm={12}>
+              <GoBook size="5rem" />
+            </Col>
+            <Col xs={4} sm={12}>
+              <GoChecklist size="5rem" style={{ marginRight: "-14px" }} />
+            </Col>
+            <Col xs={4} sm={12}>
+              <GoRepoPush size="5rem" />
+            </Col>
+          </Row>
+        </Col>
         <Col sm={5}>
           <img
             src={girl3}
