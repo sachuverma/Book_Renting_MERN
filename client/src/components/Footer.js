@@ -3,11 +3,7 @@ import { Card, Button } from "react-bootstrap";
 
 function Footer() {
   return (
-    <Card
-      bg="light"
-      text="dark"
-      className="text-center mt-5 shadow-sm translucent"
-    >
+    <Card bg="light" text="dark" className="text-center shadow-sm translucent">
       <Card.Body>
         <Card.Title>Special title treatment</Card.Title>
         <Card.Text>

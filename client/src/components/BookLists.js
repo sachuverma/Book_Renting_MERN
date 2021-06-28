@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Row, Col, Table } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -9,30 +9,30 @@ function BookLists({ books }) {
       <div className="pt-4 pb-5">
         <h2 className="mb-3"> RESULTS</h2>
         <Row>
-          {books.map((book) => (
-            <Col xs={12} sm={6} md={4} lg={3} key={book._id}>
-              <Card className="zoom">
-                <Card.Body className="card-content">
-                  <img src={book.image_url} alt={book.book_name} width="100%" />
-                  <Card.Title className="card-head">
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Book Title</th>
+                <th>Author Name</th>
+                <th>for branch</th>
+                <th>for semester</th>
+              </tr>
+            </thead>
+            <tbody>
+              {books.map((book, idx) => (
+                <tr>
+                  <td>{idx + 1}</td>
+                  <td>
                     <Link to={`/books/${book._id}`}>{book.book_name}</Link>
-                  </Card.Title>
-                  <Card.Text className="card-text">
-                    <span>
-                      <strong>Author: </strong>
-                      {book.book_author}
-                    </span>{" "}
-                    <br />
-                    <span>
-                      <strong>for: </strong>
-                      {book.for_branch}, {book.for_semester} sem
-                    </span>{" "}
-                    <br />
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
+                  </td>
+                  <td>{book.book_author}</td>
+                  <td>{book.for_branch}</td>
+                  <td>{book.for_branch}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </Row>
       </div>
     </Wrapper>
@@ -40,6 +40,7 @@ function BookLists({ books }) {
 }
 
 const Wrapper = styled.div`
+  min-height: 80vh;
   .card-content {
     padding: 0;
 

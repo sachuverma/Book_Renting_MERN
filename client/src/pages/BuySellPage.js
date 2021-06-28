@@ -192,7 +192,6 @@ function BuySellPage() {
 }
 
 const Wrapper = styled.div`
-  margin-bottom: -4.5rem;
   .form {
     width: 100%;
   }
