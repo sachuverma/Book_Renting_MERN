@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
-import { FaInfoCircle, FaCalendarPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { FaInfoCircle, FaCalendarPlus, FaCalendarCheck } from "react-icons/fa";
 import styled from "styled-components";
 
 import book2 from "../assets/images/books2.jpg";
@@ -8,7 +9,6 @@ import book2 from "../assets/images/books2.jpg";
 import { useSearchContext } from "../context/searchContext";
 import Loading from "../components/Loading";
 import Banner from "../components/Banner";
-import BookLists from "../components/BookLists";
 import NotificationModal from "../components/NotificationModal";
 
 function BuySellPage() {
@@ -28,15 +28,6 @@ function BuySellPage() {
   };
 
   const { added_loading, added_books, userAdded, addBook } = useSearchContext();
-
-  const [sellBooks, setSellBooks] = useState([]);
-  useEffect(() => {
-    userAdded();
-  }, []);
-
-  useEffect(() => {
-    setSellBooks(added_books);
-  }, [added_books]);
 
   const handleChange = (e) => {
     setData((prevState) => {
@@ -164,9 +155,16 @@ function BuySellPage() {
               <option>8</option>
             </Form.Control>
           </Form.Group>
-          <Button variant="success" type="submit">
-            Add Book <FaCalendarPlus />
-          </Button>
+          <Form.Group>
+            <Button variant="success" type="submit" className="mr-1">
+              Add Book <FaCalendarPlus />{" "}
+            </Button>
+            <Link to="/mybooks">
+              <Button variant="primary" type="button">
+                View Added Book <FaCalendarCheck />{" "}
+              </Button>
+            </Link>
+          </Form.Group>
         </Col>
       </Form>
     </Row>
@@ -183,15 +181,6 @@ function BuySellPage() {
         title="Add a New Book to Database"
         content={Content}
       />
-      <Container>
-        {sellBooks.length == 0 ? (
-          <div className="pt-5 pb-5">
-            <h1>You haven't added any book to our database</h1>
-          </div>
-        ) : (
-          <BookLists books={sellBooks} />
-        )}
-      </Container>
       <NotificationModal
         show={showNotification}
         toggle={toggleNotification}
@@ -203,6 +192,7 @@ function BuySellPage() {
 }
 
 const Wrapper = styled.div`
+  margin-bottom: -4.5rem;
   .form {
     width: 100%;
   }

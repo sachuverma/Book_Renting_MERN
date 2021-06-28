@@ -14,6 +14,7 @@ import Home from "./pages/HomePage";
 import Search from "./pages/SearchPage";
 import BuySell from "./pages/BuySellPage";
 import Book from "./pages/BookPage";
+import MyBooksPage from "./pages/MyBooksPage";
 
 const App = () => {
   const { loadUser } = useAuthContext();
@@ -34,6 +35,9 @@ const App = () => {
         </Route>
         <PrivateRoute path="/buysell" exact>
           <BuySell />
+        </PrivateRoute>
+        <PrivateRoute path="/mybooks" exact>
+          <MyBooksPage />
         </PrivateRoute>
         <Route path="/" exact>
           <Home />

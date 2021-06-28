@@ -121,12 +121,22 @@ router.get("/user/books", auth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     if (!user) throw Error("User does not exist");
-    const books = await Book.find({
+
+    const q1 = await Book.find({
       added_by: {
         id: mongoose.Types.ObjectId(user.id),
         name: user.name,
       },
     });
+
+    const q2 = await Book.find({
+      added_by: {
+        id: mongoose.Types.ObjectId(user.id),
+      },
+    });
+
+    let books = [...new Set([...q1, ...q2])];
+
     res.json(books);
   } catch (e) {
     res.status(400).json(e.message);
