@@ -63,10 +63,7 @@ const SearchProvider = ({ children }) => {
   const userAdded = async () => {
     dispatch({ type: LOADING });
 
-    const res = await axios.get(
-      "http://localhost:5000/api/user/books",
-      tokenConfig()
-    );
+    const res = await axios.get("/api/user/books", tokenConfig());
     const items = res.data;
 
     if (res.status !== 200) {
@@ -100,11 +97,7 @@ const SearchProvider = ({ children }) => {
     formData.append("book_image", file);
 
     console.log("data from form", formData);
-    const res = await axios.post(
-      "http://localhost:5000/api/books",
-      formData,
-      imageHeaderConfig()
-    );
+    const res = await axios.post("/api/books", formData, imageHeaderConfig());
     const item = await res.data;
 
     if (res.status !== 200) {
