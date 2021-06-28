@@ -1,11 +1,20 @@
 import React, { useEffect } from "react";
-import { Button, Row, Col } from "react-bootstrap";
+import { Button, Row, Col, Container } from "react-bootstrap";
 import { FaSortAmountDownAlt } from "react-icons/fa";
 
 import styled from "styled-components";
 
 import book1 from "../assets/images/books1.jpg";
 import WindowImg from "../assets/images/window.jpg";
+
+import girl1 from "../assets/images/girl1.svg";
+import girl2 from "../assets/images/girl2.svg";
+import girl3 from "../assets/images/girl3.svg";
+
+import logo1 from "../assets/images/logo1.svg";
+import logo2 from "../assets/images/logo2.svg";
+import logo3 from "../assets/images/logo3.svg";
+import logo4 from "../assets/images/logo4.svg";
 
 import Banner from "../components/Banner";
 
@@ -18,9 +27,10 @@ const HomePage = () => {
     <Wrapper>
       <Banner image={book1} title="Book House" content={BannerContent} />
       <br />
+      <div>{LogoTexts}</div>
       <div id="guide"></div>
       <h1>Tricks That Will Help You Read More</h1> <hr />
-      <Row className="row2">
+      <Row className="row2 mb-5">
         <Col xs={5} className="window1">
           <img src={WindowImg} alt="window" />
         </Col>
@@ -34,22 +44,26 @@ const HomePage = () => {
 
 const BannerContent = (
   <div>
-    <p>
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nam, debitis.
-      Vero odit, dolorem molestiae nesciunt cumque fugiat, in iusto natus a
-      laboriosam dignissimos corporis autem distinctio harum aliquam, quo
-      debitis!
-    </p>
-    <p>
-      deleniti sit repellendus eveniet possimus, doloribus odio ipsum, quam
-      voluptatem. Adipisci, maiores error. Officiis fugiat repellendus,
-      voluptates illum maiores aspernatur.
-    </p>
-    <p>
-      Quo ducimus eum facilis atque possimus aperiam, provident reprehenderit
-      perferendis autem non eius incidunt impedit, ex aut eveniet quibusdam
-      quaerat excepturi harum sequi sint molestiae asperiores?
-    </p>
+    <Container style={{ maxWidth: "80vw" }}>
+      <Row>
+        <Col sm={5}>
+          <img
+            src={girl1}
+            alt="girl logo"
+            style={{ width: "100%", height: "100%" }}
+          />
+        </Col>
+        <Col sm={2}></Col>
+        <Col sm={5}>
+          <img
+            src={girl3}
+            alt="girl logo"
+            style={{ width: "100%", height: "100%" }}
+          />
+        </Col>
+      </Row>
+    </Container>
+    <br /> <br />
     <a href="#guide">
       <Button>
         Guide To Reading <FaSortAmountDownAlt />
@@ -101,6 +115,75 @@ const GuidLines = (
       sprint (where I may spend five to 10 minutes doing something else).{" "}
     </p>
   </ul>
+);
+
+const LogoTexts = (
+  <Container className="my-5">
+    <Row className="py-2">
+      <Col>
+        <img src={logo1} alt="logo1" style={{ maxWidth: "100%" }} />
+      </Col>
+      <Col xs={8}>
+        <div className="display-4">Heading One</div>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quam,
+          delectus repudiandae. Nesciunt, aliquam. Optio veniam architecto, quod
+          error tempore enim libero delectus, laudantium voluptate assumenda
+          consequuntur recusandae quibusdam sunt magni.
+        </p>
+      </Col>
+    </Row>
+    <Row className="py-2">
+      <Col xs={8}>
+        <div className="display-4">Heading Two</div>
+        <p>
+          Saepe non commodi distinctio ab enim consectetur consequatur in hic
+          sequi dignissimos ratione fugit ex quaerat neque expedita aliquam
+          perferendis optio quis id. Numquam exercitationem consequuntur odio
+          minima iste? Cupiditate, nobis natus? Modi, adipisci consectetur?
+          Quod, laborum dolore sequi reiciendis officiis facere quis dignissimos
+          expedita!
+        </p>
+      </Col>
+      <Col>
+        <img src={logo2} alt="logo2" style={{ maxWidth: "100%" }} />
+      </Col>
+    </Row>
+    <Row className="py-2">
+      <Col>
+        <img src={logo3} alt="logo1" style={{ maxWidth: "100%" }} />
+      </Col>
+      <Col xs={8}>
+        <div className="display-4">Heading Three</div>
+        <p>
+          Itaque ad saepe obcaecati quidem iusto, beatae illum non iure dolore
+          dolorem voluptatibus, similique rem consequuntur repudiandae quod
+          ipsum accusantium omnis exercitationem pariatur perspiciatis facere
+          porro quam aliquam ipsam. Adipisci, consequatur officiis nesciunt
+          cumque at cupiditate amet
+        </p>
+      </Col>
+    </Row>
+    <Row className="py-2">
+      <Col xs={8}>
+        <div className="display-4">Heading Four</div>
+        <p>
+          Aliquam praesentium sit autem dolore voluptatibus eligendi ut et illo
+          eius facilis fuga saepe magnam labore animi temporibus harum
+          reprehenderit natus, esse cupiditate vel. Sit quae modi commodi
+          doloribus autem a est ut ex enim praesentium natus esse. Aliquam
+          maiores in explicabo magnam omnis cum exercitationem ullam dolor
+          tempore libero porro voluptatum excepturi aperiam, voluptatem optio
+          quos quibusdam mollitia error commodi maxime iste? Nobis ipsam quam
+          illum nihil, earum, animi facere ex rerum nemo fuga fugiat cupiditate
+          aperiam quasi?
+        </p>
+      </Col>
+      <Col>
+        <img src={logo4} alt="logo2" style={{ maxWidth: "100%" }} />
+      </Col>
+    </Row>
+  </Container>
 );
 
 const Wrapper = styled.div`

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import styled from "styled-components";
 
@@ -7,9 +7,13 @@ import { useAuthContext } from "../context/authContext";
 import NotificationModal from "./NotificationModal";
 
 function BookDetails({ book }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { isAuthenticated, user } = useAuthContext();
 
-  const { book_author, for_branch, for_semester, added_by } = book;
+  const { book_author, for_branch, for_semester, added_by, description } = book;
   const [show, setShow] = useState(false);
   const [text, setText] = useState("");
 
@@ -38,9 +42,17 @@ function BookDetails({ book }) {
         <strong>{for_branch}</strong> branch students
       </div>{" "}
       <div>
+        {description && (
+          <div>
+            Description, <i>{description}</i>
+          </div>
+        )}
+      </div>
+      <br />
+      <div>
         {added_by && (
           <span>
-            Sold By, <i>{added_by.name}</i>
+            Sold By, <i>{added_by.id}</i>
           </span>
         )}
       </div>{" "}

@@ -2,13 +2,15 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import styled from "styled-components";
 
-function Banner({ image, title, content }) {
+function Banner({ image, title, content, logo = null }) {
   return (
     <Wrapper>
       <div className="banner">
         <img src={image} alt="Main Banner" />
         <Container className="centered">
-          <h1>{title}</h1>
+          <h1>
+            {title} {logo}
+          </h1>
           <div>{content}</div>
         </Container>
       </div>

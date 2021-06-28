@@ -60,6 +60,7 @@ router.post(
       for_branch: req.body.for_branch,
       for_semester: req.body.for_semester,
       sold: req.body.sold,
+      description: req.body.desc,
     });
     newBook.save().then((book) => {
       res.json(book);
@@ -80,7 +81,7 @@ router.get("/search", async (req, res) => {
       const books = await Book.find({
         book_author: { $regex: re, $options: "i" },
         sold: false,
-      });
+      }).sort({ book_name: 1 });
       if (!books) throw Error(`Can't Find Book With Author ${book_author}`);
       res.json(books);
     } catch (e) {
@@ -92,7 +93,7 @@ router.get("/search", async (req, res) => {
       const books = await Book.find({
         book_name: { $regex: re, $options: "i" },
         sold: false,
-      });
+      }).sort({ book_name: 1 });
       if (!books) throw Error(`Can't Find Book For Branch ${for_branch}`);
       res.json(books);
     } catch (e) {
@@ -103,7 +104,7 @@ router.get("/search", async (req, res) => {
       const books = await Book.find({
         for_semester: Number(for_semester),
         sold: false,
-      });
+      }).sort({ book_name: 1 });
       if (!books) throw Error(`Can't Find Book For Semester ${for_semester}`);
       res.json(books);
     } catch (e) {
@@ -115,7 +116,7 @@ router.get("/search", async (req, res) => {
       const books = await Book.find({
         book_name: { $regex: re, $options: "i" },
         sold: false,
-      });
+      }).sort({ book_name: 1 });
       if (!books) throw Error(`Can't Find Book With Title ${book_title}`);
       res.json(books);
     } catch (e) {

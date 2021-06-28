@@ -17,6 +17,7 @@ function BuySellPage() {
     book_author: "",
     for_branch: "",
     for_semester: "1",
+    desc: "",
   });
   const [file, setFile] = useState(null);
 
@@ -51,7 +52,8 @@ function BuySellPage() {
       !data.book_name ||
       !data.book_author ||
       !data.for_branch ||
-      !data.for_semester
+      !data.for_semester ||
+      !data.desc
     ) {
       setAddError("Add All Details");
       return;
@@ -64,6 +66,7 @@ function BuySellPage() {
       book_author: "",
       for_branch: "",
       for_semester: "1",
+      desc: "",
     });
     setFile(null);
   };
@@ -133,6 +136,19 @@ function BuySellPage() {
               name="for_branch"
               value={data.for_branch}
               onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Control
+              type="text"
+              className="custom-input"
+              placeholder="enter a description"
+              name="desc"
+              value={data.desc}
+              onChange={handleChange}
+              as="textarea"
+              rows={3}
+              style={{ minHeight: "40px", maxHeight: "185px" }}
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect2">
@@ -206,14 +222,14 @@ const Wrapper = styled.div`
   }
 
   .custom-select {
-    color: #fff !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    // color: #fff !important;
+    // background-color: rgba(255, 255, 255, 0.1) !important;
     border: none !important;
     option {
-      color: #636363;
+      // color: #636363;
     }
     option:disabled {
-      color: #b3b3b3;
+      // color: #b3b3b3;
     }
   }
   .custom-select:hover {
@@ -221,8 +237,8 @@ const Wrapper = styled.div`
   }
 
   .custom-input {
-    color: #fff !important;
-    background-color: rgba(255, 255, 255, 0.1) !important;
+    // color: #fff !important;
+    // background-color: rgba(255, 255, 255, 0.1) !important;
     border: none !important;
   }
 

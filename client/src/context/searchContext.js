@@ -67,19 +67,19 @@ const SearchProvider = ({ children }) => {
     const items = res.data;
 
     if (res.status !== 200) {
-      console.log("error geting sell books");
+      console.log("error getting sell books");
       dispatch({ type: LOAD_ADD_ITEMS, payload: [] });
       return;
     }
 
     for (let i = 0; i < items.length; ++i) {
       let image_url = "https://via.placeholder.com/500";
-      try {
-        const res = await axios.get(`/api/books/book/image/${items[i]._id}`);
-        image_url = res.config.url;
-      } catch (e) {
-        console.log("img err", e);
-      }
+      // try {
+      //   // const res = await axios.get(`/api/books/book/image/${items[i]._id}`);
+      //   image_url = res.config.url;
+      // } catch (e) {
+      //   console.log("img err", e);
+      // }
       items[i]["image_url"] = image_url;
       console.log(i, items[i]);
     }
@@ -94,6 +94,7 @@ const SearchProvider = ({ children }) => {
     formData.append("book_author", data.book_author);
     formData.append("for_semester", data.for_semester);
     formData.append("for_branch", data.for_branch);
+    formData.append("desc", data.desc);
     formData.append("book_image", file);
 
     console.log("data from form", formData);

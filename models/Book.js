@@ -36,6 +36,10 @@ const BookSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+  description: {
+    type: String,
+    default: "no description provided",
+  },
 });
 
 module.exports = Book = mongoose.model("book", BookSchema);

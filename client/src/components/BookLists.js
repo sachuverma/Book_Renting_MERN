@@ -28,7 +28,7 @@ function BookLists({ books }) {
                   </td>
                   <td>{book.book_author}</td>
                   <td>{book.for_branch}</td>
-                  <td>{book.for_branch}</td>
+                  <td>{book.for_semester}</td>
                 </tr>
               ))}
             </tbody>
