@@ -32,7 +32,7 @@ function BookPage() {
 
   const Content = (
     <Row>
-      <Col className="image" md={6}>
+      <Col className="image" md={4}>
         <img
           src={book_details.image_url}
           alt="Book Images Not Available"
