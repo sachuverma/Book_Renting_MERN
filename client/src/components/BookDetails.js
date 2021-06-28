@@ -15,16 +15,15 @@ function BookDetails({ book }) {
 
   const { book_author, for_branch, for_semester, added_by, description } = book;
   const [show, setShow] = useState(false);
+  const [sold, setSold] = useState(false);
   const [text, setText] = useState("");
 
-  const openRequestNotification = () => {
+  const notificationModal = (text, toggleSold = true) => {
     setShow(true);
-    setText("Your request has been sent to the owner");
-  };
-
-  const openDeleteNotification = () => {
-    setShow(true);
-    setText("This book is removed form the database");
+    setText(text);
+    if (toggleSold) {
+      setSold((prev) => !prev);
+    }
   };
 
   const toggleModal = () => {
@@ -52,7 +51,7 @@ function BookDetails({ book }) {
       <div>
         {added_by && (
           <span>
-            Sold By, <i>{added_by.id}</i>
+            Sold By, <i>{added_by.name ? added_by.name : "Harsh Kumar"}</i>
           </span>
         )}
       </div>{" "}
@@ -69,12 +68,31 @@ function BookDetails({ book }) {
       )}
       {user ? (
         user._id !== added_by.id ? (
-          <Button variant="success" onClick={openRequestNotification}>
-            Request for this book
+          sold ? (
+            <Button variant="danger" disabled>
+              Book Sold Out
+            </Button>
+          ) : (
+            <Button
+              variant="success"
+              onClick={() => notificationModal("Request sent to owner", false)}
+            >
+              Request for this book
+            </Button>
+          )
+        ) : sold ? (
+          <Button
+            variant="success"
+            onClick={() => notificationModal("Book marked available!")}
+          >
+            Make Available
           </Button>
         ) : (
-          <Button variant="danger" onClick={openDeleteNotification}>
-            Book Sold
+          <Button
+            variant="danger"
+            onClick={() => notificationModal("Book marked sold out!")}
+          >
+            Mark Sold Out
           </Button>
         )
       ) : null}
