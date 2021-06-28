@@ -1,7 +1,9 @@
 import React from "react";
-import { Card, Row, Col, Table } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+import { Card, Row, Col, Table } from "react-bootstrap";
+import { FaTimes, FaCheck } from "react-icons/fa";
 
 function BookLists({ books }) {
   return (
@@ -13,10 +15,11 @@ function BookLists({ books }) {
             <thead>
               <tr>
                 <th>#</th>
-                <th>Book Title</th>
-                <th>Author Name</th>
+                <th>book title</th>
+                <th>author name</th>
                 <th>for branch</th>
-                <th>for semester</th>
+                <th>sem</th>
+                <th>available</th>
               </tr>
             </thead>
             <tbody>
@@ -29,6 +32,13 @@ function BookLists({ books }) {
                   <td>{book.book_author}</td>
                   <td>{book.for_branch}</td>
                   <td>{book.for_semester}</td>
+                  <td>
+                    {book.sold ? (
+                      <FaTimes style={{ color: "red" }} />
+                    ) : (
+                      <FaCheck style={{ color: "green" }} />
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
