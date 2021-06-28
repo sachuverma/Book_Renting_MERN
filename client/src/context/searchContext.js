@@ -7,6 +7,7 @@ import {
   LOAD_ITEMS,
   LOAD_ADD_ITEMS,
   SENT_DETAILS,
+  SET_ALL_BOOKS,
 } from "../actions/types";
 import reducer from "../reducer/searchReducer";
 
@@ -19,6 +20,7 @@ const initialState = {
   send_loading: false,
   books: [],
   added_books: [],
+  all_books: [],
 };
 
 const SearchProvider = ({ children }) => {
@@ -58,6 +60,21 @@ const SearchProvider = ({ children }) => {
   const handleSearch = (field = "title", value = "") => {
     console.log("handle search");
     fetchData(`${url}${field}=${value}`);
+  };
+
+  const fetchAllBooks = async () => {
+    dispatch({ type: LOADING });
+
+    const res = await axios.get("/api/books", tokenConfig());
+    const items = res.data;
+
+    if (res.status !== 200) {
+      console.log("error getting sell books");
+      dispatch({ type: SET_ALL_BOOKS, payload: [] });
+      return;
+    }
+
+    dispatch({ type: SET_ALL_BOOKS, payload: items });
   };
 
   const userAdded = async () => {
@@ -144,6 +161,7 @@ const SearchProvider = ({ children }) => {
         handleSearch,
         userAdded,
         addBook,
+        fetchAllBooks,
       }}
     >
       {children}

@@ -4,6 +4,7 @@ import {
   LOAD_ITEMS,
   LOAD_ADD_ITEMS,
   SENT_DETAILS,
+  SET_ALL_BOOKS,
 } from "../actions/types";
 
 const reducer = (state, action) => {
@@ -37,6 +38,14 @@ const reducer = (state, action) => {
       loading: false,
       added_loading: false,
       added_books: [...action.payload],
+    };
+  }
+
+  if (action.type === SET_ALL_BOOKS) {
+    return {
+      ...state,
+      loading: false,
+      all_books: [...action.payload],
     };
   }
 

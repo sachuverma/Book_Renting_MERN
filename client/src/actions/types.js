@@ -17,6 +17,7 @@ export const BOOK_LOADED = "BOOK_LOADED";
 export const BOOK_ERROR = "BOOK_ERROR";
 
 export const LOAD_ADD_ITEMS = "LOAD_ADD_ITEMS";
+export const SET_ALL_BOOKS = "SET_ALL_BOOKS";
 
 export const SEND_LOADING = "SEND_LOADING";
 export const SENT_DETAILS = "SENT_DETAILS";

@@ -13,12 +13,8 @@ import Loading from "../components/Loading";
 
 function BookPage() {
   const { id } = useParams();
-  const {
-    loading_book,
-    book_details,
-    book_error,
-    searchBookDetails,
-  } = useBookDetailsContext();
+  const { loading_book, book_details, book_error, searchBookDetails } =
+    useBookDetailsContext();
 
   React.useEffect(() => {
     searchBookDetails(id);
@@ -40,7 +36,8 @@ function BookPage() {
         <img
           src={book_details.image_url}
           alt="Book Images Not Available"
-          width="100%"
+          width="70%"
+          style={{ borderRadius: "10px" }}
         />
       </Col>
       <Col md={6}>

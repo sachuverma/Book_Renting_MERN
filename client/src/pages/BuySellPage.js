@@ -31,6 +31,8 @@ function BuySellPage() {
   const { added_loading, added_books, userAdded, addBook } = useSearchContext();
 
   const handleChange = (e) => {
+    setAddError("");
+
     setData((prevState) => {
       const newState = { ...prevState };
       newState[e.target.name] = e.target.value;
@@ -97,7 +99,7 @@ function BuySellPage() {
                 <h5>Last Modified: {file.lastModifiedDate.toDateString()}</h5>
               </div>
             ) : (
-              <h5>Choose before Pressing the Upload button</h5>
+              <h5>{`Choose before Pressing the Upload button, size < 1MB`}</h5>
             )}
             <hr />
           </Form.Group>
@@ -158,9 +160,7 @@ function BuySellPage() {
               name="for_semester"
               onChange={handleChange}
             >
-              <option default disabled>
-                select semester
-              </option>
+              <option disabled>select semester</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>

@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
+
 import {
   Container,
   Row,
   Col,
   FormControl,
   InputGroup,
-  Form,
   Button,
-  Dropdown,
-  DropdownButton,
 } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
+import { FaSearch, FaCalendarCheck } from "react-icons/fa";
 import { ImSpinner8 } from "react-icons/im";
 
 import { useSearchContext } from "../context/searchContext";
@@ -50,7 +49,6 @@ function SearchBox() {
                 <option value="for_branch">Branch</option>
                 <option value="for_semester">Semester</option>
               </FormControl>
-
               <FormControl
                 className="search-input"
                 placeholder="Search for book you need..."
@@ -72,8 +70,13 @@ function SearchBox() {
                     <ImSpinner8 className="icon-spin" />
                   )}
                 </Button>
-              </InputGroup.Append>
+              </InputGroup.Append>{" "}
             </InputGroup>
+            <Link to="/allbooks">
+              <Button variant="primary" type="button">
+                View All Book <FaCalendarCheck />{" "}
+              </Button>
+            </Link>
           </Col>
           <Col sm={2}></Col>
         </Row>
