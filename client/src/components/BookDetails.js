@@ -56,6 +56,11 @@ function BookDetails({ book }) {
           </span>
         )}
       </div>{" "}
+      <div>
+        <span>
+          Contact Seller, <i>+91 8375839389</i>
+        </span>
+      </div>{" "}
       <br />
       {!user && (
         <Button variant="success" disabled>
