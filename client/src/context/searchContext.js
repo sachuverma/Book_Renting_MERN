@@ -10,7 +10,7 @@ import {
 } from "../actions/types";
 import reducer from "../reducer/searchReducer";
 
-const url = "http://localhost:5000/api/books/search?";
+const url = "/api/books/search?";
 const SearchContext = React.createContext();
 
 const initialState = {
