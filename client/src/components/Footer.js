@@ -32,7 +32,11 @@ function Footer() {
           </Link>
         </Card.Title>
         <Card.Text>
-          With supporting text below as a natural lead-in to additional content.
+          <Link to="/">HOME</Link> | <Link>UPCOMING</Link> | <Link>EVENTS</Link>{" "}
+          | <Link>BLOG</Link> <br />
+          801 West Georgia Street, Vancouver, BC V6C 1P7 Canada Located at the{" "}
+          <br />
+          Rosewood Hotel Georgia <br />
         </Card.Text>
         <Button variant="primary">Go somewhere</Button>
       </Card.Body>
