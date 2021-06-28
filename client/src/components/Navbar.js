@@ -12,6 +12,7 @@ import {
   FaSortAmountDownAlt,
 } from "react-icons/fa";
 
+import mainLogo from "../assets/images/mainLogo.svg";
 import { useAuthContext } from "../context/authContext";
 
 import RegisterModal from "./RegisterModal";
@@ -61,7 +62,7 @@ function NavBar() {
           <Container>
             <Navbar.Brand>
               <Link className="nav-links" to="/">
-                BOOK HOUSE{" "}
+                <img src={mainLogo} alt="main logo" className="main-logo" />
               </Link>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -109,6 +110,9 @@ function NavBar() {
 }
 
 const Wrapper = styled.div`
+  .main-logo {
+    height: 30px !important;
+  }
   .welcome:hover {
     cursor: text;
   }
